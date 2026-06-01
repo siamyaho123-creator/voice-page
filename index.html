@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Special Greeting</title>
+
+<style>
+body{
+    font-family: Arial;
+    text-align:center;
+    margin-top:100px;
+}
+
+input,button{
+    padding:10px;
+    font-size:18px;
+}
+
+#message{
+    margin-top:20px;
+    font-size:24px;
+    font-weight:bold;
+}
+
+#countdown{
+    margin-top:15px;
+    font-size:40px;
+    color:red;
+}
+</style>
+
+</head>
+<body>
+
+<h2>তোমার নাম লিখো</h2>
+
+<input type="text" id="name" placeholder="তোমার নাম">
+<button onclick="startGreeting()">Submit</button>
+
+<div id="message"></div>
+<div id="countdown"></div>
+
+<audio id="voice">
+    <source src="voice.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+function startGreeting(){
+
+let name=document.getElementById("name").value;
+
+if(name==""){
+    alert("দয়া করে নাম লিখুন");
+    return;
+}
+
+document.getElementById("message").innerHTML=
+"স্বাগতম, "+name+"!";
+
+let count=3;
+
+document.getElementById("countdown").innerHTML=count;
+
+let timer=setInterval(function(){
+
+count--;
+
+if(count>0){
+
+document.getElementById("countdown").innerHTML=count;
+
+}else{
+
+clearInterval(timer);
+
+document.getElementById("countdown").innerHTML=
+"🎵 বার্তা চলছে...";
+
+document.getElementById("voice").play();
+
+}
+
+},1000);
+
+}
+
+</script>
+
+</body>
+</html>
